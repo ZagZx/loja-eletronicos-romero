@@ -18,9 +18,18 @@ def login():
 def logout():
     pass
 
+produtos = [
+            ['mouse', 30.00],
+            ['teclado', 100.00],
+            ['microfone', 500.00],
+            ['fone', 400.00]
+           ]
+           
 @app.route("/produtos")
 def produtos():
     return render_template('produtos.html')
+
+
 
 @app.route("/carrinho")
 def carrinho():
