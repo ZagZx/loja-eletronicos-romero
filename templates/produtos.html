@@ -10,9 +10,9 @@
     <h1>Escolha os produtos</h1>
 
     {{for produto in produtos}}
-    <li>
-        {{produto.nome}} - {{produto.valor}}
-        <a href="{{url_for(carrinho)}}">Adcionar ao carrinho</a>
-    </li>
+        <li>
+            {{ produto[0] }} - {{ produto[1] }}
+            <a href="{{url_for(carrinho)}}">Adcionar ao carrinho</a>
+        </li>
     {{% endfor %}}
 </html>
