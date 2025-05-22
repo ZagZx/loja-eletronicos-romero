@@ -2,9 +2,23 @@
     margin: 0;
     box-sizing: border-box;
     padding: 0;
+    font-family: Verdana, Helvetica, sans-serif, Arial;
+}
+
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+}
+header{
+    justify-content: center;
 }
 
 form{
+    width: 30em;
     display: flex;
     flex-direction: column;
+    gap: 0.5em;
 }
