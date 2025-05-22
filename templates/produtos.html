@@ -9,10 +9,21 @@
 <body>
     <h1>Escolha os produtos</h1>
 
-    {{for produto in produtos}}
-        <li>
-            {{ produto[0] }} - {{ produto[1] }}
-            <a href="{{url_for(carrinho)}}">Adcionar ao carrinho</a>
-        </li>
-    {{% endfor %}}
+    <form action="{{url_for('carrinho')}}" method="POST">
+
+    {% for produto in produtos %}
+    
+            <label for="">{{ produto[0] }} - {{ produto[1] }}</label>
+
+        
+        
+            <input type="checkbox" placeholder="Selecionar" name="{{produto[0]}}">
+            <br>
+    
+    {% endfor %}
+
+
+    <button type="submit">Enviar Produtos ao carrinho</button>
+
+    </form>
 </html>

@@ -2,7 +2,15 @@ from flask import *
 
 app = Flask(__name__)
 
+app.secret_key = 's69LFQk4eGAeHXRk7QfPRc6fspnJMCH7muRhL^PGcuu@82k&oNgH6Cj9wKYZpGBMZGc!Wo9ZoMUTY#ZKqAUY%YDX@GXnqdix59DM7ZCSbXiydj$4ezA4s75UmgFz2beMd9J!DoZvMsA4zqx6rQV96#HkeyEaF$8u#VuTx8MStrG@jVkuKaSHAdF$C2ybd^LGM34WGja2njvDBg4vTAaybnbMU8Gwu@fKn7Nt&%uP%GCrgU$M$brwB5NR72hc&@YzZNd3ekww6W&yn7QUp%KD3QtsLf6qbmcUz^C23ZqnifKmb!8oF5GRNhA7n5d2D!NVaSWo#XMMDcKMuF3fz@N#gUyENcYfmut67QwKdxrKTX5QK8YtoeiepEYnBX&X$mWqEibaMS%DTGGphDBxXuCbQG^fGNN3Prtpj9q$Adr5uMzu#tzNpLuJM2h%aEMyniehsQ8!tzdAgA&6TSRPYkaE3Da!mS3APicap3p%xKjL5tHPXD&QdBi8Et7mNu8p#ik'
+
 usrs = {'adm': 'admadm'} #Usuários
+produtos = [
+            ['mouse', 30.00],
+            ['teclado', 100.00],
+            ['microfone', 500.00],
+            ['fone', 400.00]
+           ]
 
 @app.route('/')
 def index():
@@ -29,20 +37,15 @@ def login():
 def logout():
     pass
 
-produtos = [
-            ['mouse', 30.00],
-            ['teclado', 100.00],
-            ['microfone', 500.00],
-            ['fone', 400.00]
-           ]
+
            
-@app.route("/produtos")
-def produtos():
-    return render_template('produtos.html')
+@app.route("/produtos", methods=['POST','GET'])
+def produtos_view():
+    return render_template('produtos.html', produtos=produtos)
 
 
 
-@app.route("/carrinho")
+@app.route("/carrinho", methods=['POST','GET'])
 def carrinho():
     return render_template('carrinho.html')
 
