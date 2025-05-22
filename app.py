@@ -10,6 +10,10 @@ def index():
 def cadastro():
     return render_template('cadastro.html')
 
+@app.route("/cadastro", methods=["POST"])
+def salvar_session():
+    pass
+
 @app.route("/login")
 def login():
     return render_template('login.html')
