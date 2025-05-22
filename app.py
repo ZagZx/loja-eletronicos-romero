@@ -1,6 +1,8 @@
-from flask import Flask, render_template
+from flask import *
 
 app = Flask(__name__)
+
+usrs = {'adm': 'admadm'} #Usuários
 
 @app.route('/')
 def index():
@@ -8,7 +10,16 @@ def index():
 
 @app.route("/cadastro", methods=['POST', 'GET'])
 def cadastro():
-    return render_template('cadastro.html')
+    if request.method == 'POST':
+        usr = request.form['login']
+        if usr in usrs.keys():
+            return redirect(url_for('cadastro'))
+        else:
+            sen = request.form['senha']
+            usrs[usr] = sen
+            return redirect(url_for('login'))
+    else:
+        return render_template('cadastro.html')
 
 @app.route("/login")
 def login():
