@@ -6,13 +6,9 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-@app.route("/cadastro")
+@app.route("/cadastro", methods=['POST', 'GET'])
 def cadastro():
     return render_template('cadastro.html')
-
-@app.route("/cadastro", methods=["POST"])
-def salvar_session():
-    pass
 
 @app.route("/login")
 def login():
