@@ -1,11 +1,15 @@
 {% extends "base.html" %}
-
 {% block title %}Página Inicial{% endblock title %}
 
 {% block head %}
 {{ super() }}
 {# SE FOR COLOCAR ALGUM STYLE PERSONALIZADO, COLOQUE AQUI #}
-{# <style>
+{# 
+<style>
+
+    p {
+        align-items: center;
+    }
 
 </style> #}
 {% endblock head %}
@@ -14,4 +18,8 @@
 
 {% block main %}
 {# AQUI VOCÊ VAI COLOCAR TODO O CONTEUDO DA PÁGINA, IMAGINE QUE ISSO É UMA TAG MAIN #}
+
+<h1>Periféricos de Qualidade para o Seu Computador</h1>
+<p>Descubra uma seleção completa dos melhores periféricos para turbinar sua experiência, seja para trabalho, jogos ou entretenimento.</p>
+
 {% endblock main %}
