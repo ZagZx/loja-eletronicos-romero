@@ -5,9 +5,17 @@
 {% block head %}
 {{ super() }}
 {# SE FOR COLOCAR ALGUM STYLE PERSONALIZADO, COLOQUE AQUI #}
-{# <style>
+<script>
+    function only_number(id){
+        const input = document.getElementById(id)
+        const ultima = input.value.length - 1
 
-</style> #}
+        if (isNaN(input.value[ultima])){
+            input.value = input.value.slice(0, ultima) + input.value.slice(ultima + 1);
+        }
+    }
+</script>
+
 {% endblock head %}
 
 {% block header_title %}Produtos{% endblock header_title %}
@@ -20,15 +28,14 @@
             {% for produto in produtos %}   
             <li class="list-group-item">
                 <label class="form-check-label" for="{{ produto[0] }}">{{ produto[0] }} - R$ {{ produto[1] }}</label>
-                <input class="form-check-input" type="checkbox" id="{{ produto[0]}}" placeholder="Selecionar" name="{{ produto[0] }}">  
+                <input class="form-check-input" type="checkbox" id="{{ produto[0]}}" placeholder="Selecionar" name="{{ produto[0] }}">
+                <input class="form-control" type="text" oninput="only_number(`{{ produto[0] + 'qnt' }}`)" id="{{ produto[0] + 'qnt'}}" name="{{ produto[0] + 'qnt' }}" placeholder="Quantidade">  
             </li>
             {% endfor %}
         </ul>
         <div class="card-footer">
             <button class="btn btn-success" style="width: 100%;" type="submit">Enviar produtos ao carrinho</button>
         </div>
-        
     </div>
-    
 </form>
 {% endblock main %}
