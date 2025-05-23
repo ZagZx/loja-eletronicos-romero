@@ -4,11 +4,6 @@
 {% block head %}
     {{ super() }}
     
-    <style>
-        label{
-            font-size: 0.78em;
-        }
-    </style>
     <script>
         function mostrar(){
             const input = document.getElementById('senha')
@@ -25,17 +20,30 @@
 {% block header_title %}Cadastro{% endblock header_title %}
 
 {% block main %}
-    <form action="{{ url_for('cadastro') }}" method="post">
-        <input type="text" name="login" placeholder="Digite um login">
-        <input type="password" id="senha" name="senha" placeholder="Digite uma senha">
-        <span>
-            <label style="color: rgba(230, 30, 30, 0.53);" for="senha">
-                * A senha deve ter ao menos 5 caracteres
-            </label>
-            <input class="form-check-input" onclick="mostrar()" id="mostrar_senha" type="checkbox" value="teste">
-            <label class="form-check-label" for="mostrar_senha">Mostrar senha</label>
-        </span>
-        <button class="btn btn-success" type="submit">Cadastrar</button>
-    </form>
+    <div class="card">
+        <div class="card-header">Cadastro</div>
+        <div class="card-body">
+            <form action="{{ url_for('cadastro') }}" method="post">
+                <label class="form-label" for="email">Email</label>
+                <input class="form-control bg-dark-subtle" type="text" name="email" id="email" placeholder="Digite um email" required>
+
+                <label class="form-label" for="username">Nome de usuário</label>
+                <input class="form-control bg-dark-subtle" type="text" name="login" id="username" placeholder="Digite um nome de usuário" required>
+
+                <label class="form-label" for="senha">Senha</label>
+                <input class="form-control bg-dark-subtle" type="password" id="senha" name="senha" placeholder="Digite uma senha" required>
+                <span style="font-size: 0.78em">
+                    <label class="form-label" style="color: rgba(230, 30, 30, 0.53);" for="senha">
+                        * A senha deve ter ao menos 5 caracteres
+                    </label>
+                    <input class="form-check-input" onclick="mostrar()" id="mostrar_senha" type="checkbox" value="teste">
+                    <label class="form-label" class="form-check-label" for="mostrar_senha">Mostrar senha</label>
+                </span>
+                <button class="btn btn-warning" type="submit">Cadastrar</button>
+            </form>
+        </div>
+        
+    </div>
+    
 {% endblock main %}
     

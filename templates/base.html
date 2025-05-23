@@ -12,16 +12,16 @@
 <body>
     <header class="bg-dark-subtle">
         <div>
-            <h1>{% block header_title%}{% endblock %}</h1>
+            <p class="h1">{% block header_title%}{% endblock %}</p>
             <div>
-                <a href="{{ url_for('produtos') }}" ><button class="btn btn-outline-light">Produtos</button></a>
-                <a href="{{ url_for('carrinho') }}" ><button class="btn btn-outline-light">Carrinho</button></a>
+                <a class="btn btn-outline-light" href="{{ url_for('produtos') }}">Produtos</a>
+                <a class="btn btn-outline-light" href="{{ url_for('carrinho') }}">Carrinho</a>
             </div>
         </div>
         <div>
             <div>
-                <a href="{{ url_for('cadastro') }}" ><button class="btn btn-outline-warning">Cadastrar-se</button></a>
-                <a href="{{ url_for('login') }}" ><button class="btn btn-outline-info">Login</button></a>
+                <a class="btn btn-outline-warning" href="{{ url_for('cadastro') }}">Cadastrar-se</a>
+                <a class="btn btn-outline-info" href="{{ url_for('login') }}">Login</a>
             </div>
         </div>
     </header>

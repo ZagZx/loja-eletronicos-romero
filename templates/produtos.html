@@ -15,13 +15,20 @@
 {% block main %}
 {# AQUI VOCÊ VAI COLOCAR TODO O CONTEUDO DA PÁGINA, IMAGINE QUE ISSO É UMA TAG MAIN #}
 <form action="{{url_for('carrinho')}}" method="POST">
-
-    {% for produto in produtos %}
-        <div>
-            <label class="form-check-label" for="{{ produto[0] }}">{{ produto[0] }} - R$ {{ produto[1] }}</label>
-            <input class="form-check-input" type="checkbox" id="{{ produto[0]}}" placeholder="Selecionar" name="{{ produto[0] }}">
+    <div class="card">
+        <ul class="list-group list-group-flush">
+            {% for produto in produtos %}   
+            <li class="list-group-item">
+                <label class="form-check-label" for="{{ produto[0] }}">{{ produto[0] }} - R$ {{ produto[1] }}</label>
+                <input class="form-check-input" type="checkbox" id="{{ produto[0]}}" placeholder="Selecionar" name="{{ produto[0] }}">  
+            </li>
+            {% endfor %}
+        </ul>
+        <div class="card-footer">
+            <button class="btn btn-success" style="width: 100%;" type="submit">Enviar produtos ao carrinho</button>
         </div>
-    {% endfor %}
-    <button class="btn btn-success" type="submit">Enviar produtos ao carrinho</button>
+        
+    </div>
+    
 </form>
 {% endblock main %}
