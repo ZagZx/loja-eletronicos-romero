@@ -1,29 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Escolha os produtos</h1>
+{% extends "base.html" %}
 
-    <form action="{{url_for('carrinho')}}" method="POST">
+{% block title %}Produtos{% endblock title %}
+
+{% block head %}
+{{ super() }}
+{# SE FOR COLOCAR ALGUM STYLE PERSONALIZADO, COLOQUE AQUI #}
+{# <style>
+
+</style> #}
+{% endblock head %}
+
+{% block header_title %}Produtos{% endblock header_title %}
+
+{% block main %}
+{# AQUI VOCÊ VAI COLOCAR TODO O CONTEUDO DA PÁGINA, IMAGINE QUE ISSO É UMA TAG MAIN #}
+<form action="{{url_for('carrinho')}}" method="POST">
 
     {% for produto in produtos %}
-    
-            <label for="">{{ produto[0] }} - {{ produto[1] }}</label>
-
-        
-        
-            <input type="checkbox" placeholder="Selecionar" name="{{produto[0]}}">
-            <br>
-    
+        <div>
+            <label class="form-check-label" for="{{ produto[0] }}">{{ produto[0] }} - R$ {{ produto[1] }}</label>
+            <input class="form-check-input" type="checkbox" id="{{ produto[0]}}" placeholder="Selecionar" name="{{ produto[0] }}">
+        </div>
     {% endfor %}
-
-
-    <button type="submit">Enviar Produtos ao carrinho</button>
-
-    </form>
-</html>
+    <button class="btn btn-success" type="submit">Enviar produtos ao carrinho</button>
+</form>
+{% endblock main %}

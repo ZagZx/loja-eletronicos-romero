@@ -4,7 +4,6 @@
 {% block head %}
     {{ super() }}
     
-
     <style>
         label{
             font-size: 0.78em;
@@ -23,9 +22,7 @@
     </script>
 {% endblock head %}
 
-{% block header_title %}
-Cadastro
-{% endblock header_title %}
+{% block header_title %}Cadastro{% endblock header_title %}
 
 {% block main %}
     <form action="{{ url_for('cadastro') }}" method="post">

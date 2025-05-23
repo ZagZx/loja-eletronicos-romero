@@ -1,13 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<h1>Carrinho</h1>
-<body>
-    
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}Carrinho{% endblock title %}
+
+{% block head %}
+{{ super() }}
+{# SE FOR COLOCAR ALGUM STYLE PERSONALIZADO, COLOQUE AQUI #}
+{# <style>
+
+</style> #}
+{% endblock head %}
+
+{% block header_title %}Carrinho{% endblock header_title %}
+
+{% block main %}
+{# AQUI VOCÊ VAI COLOCAR TODO O CONTEUDO DA PÁGINA, IMAGINE QUE ISSO É UMA TAG MAIN #}
+{% endblock main %}

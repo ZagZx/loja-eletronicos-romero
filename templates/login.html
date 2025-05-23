@@ -1,18 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <header></header>
-    <main>
-        <form action="url_for('login')" method="post">
-            <input type="text" name="login" placeholder="Digite seu login">
-            <input type="password" name="senha" placeholder="Digite sua senha">
-            <button type="submit">Enviar</button>
-        </form>
-    </main>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock title %}
+
+{% block head %}
+{{ super() }}
+{# SE FOR COLOCAR ALGUM STYLE PERSONALIZADO, COLOQUE AQUI #}
+{# <style>
+
+</style> #}
+{% endblock head %}
+
+{% block header_title %}Login{% endblock header_title %}
+
+{% block main %}
+{# AQUI VOCÊ VAI COLOCAR TODO O CONTEUDO DA PÁGINA, IMAGINE QUE ISSO É UMA TAG MAIN #}
+<form action="{{ url_for('login') }}" method="post">
+    <input type="text" name="login" placeholder="Digite seu login">
+    <input type="password" name="senha" placeholder="Digite sua senha">
+    <button type="submit">Enviar</button>
+</form>
+{% endblock main %}

@@ -37,3 +37,7 @@ form{
     flex-direction: column;
     gap: 0.5em;
 }
+
+label{
+    user-select: none;
+}

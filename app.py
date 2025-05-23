@@ -6,10 +6,10 @@ app.secret_key = 's69LFQk4eGAeHXRk7QfPRc6fspnJMCH7muRhL^PGcuu@82k&oNgH6Cj9wKYZpG
 
 usrs = {'adm': 'admadm'} #Usuários
 LISTA_PRODUTOS = [
-    ['mouse', 30.00],
-    ['teclado', 100.00],
-    ['microfone', 500.00],
-    ['fone', 400.00]
+    ['Mouse', 30.00],
+    ['Teclado', 100.00],
+    ['Microfone', 500.00],
+    ['Headset', 400.00]
 ]
 
 @app.route('/')
