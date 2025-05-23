@@ -15,6 +15,7 @@ LISTA_PRODUTOS = [
     ['impressora', 300.00],
     ['Caixa de som', 120.00],
 ]
+session['carrinho'] = [] #Carrinho de compras
 
 @app.route('/')
 def index():
