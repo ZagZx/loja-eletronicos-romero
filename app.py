@@ -68,7 +68,10 @@ def produtos():
 
 @app.route("/carrinho", methods=['POST','GET'])
 def carrinho():
-    return render_template('carrinho.html')
+    carrinho[session['name']]
+    if request.method == 'POST':
+        pass #eventualmente o request
+    return render_template('carrinho.html', carrinho=carrinho)
 
 if __name__ == '__main__':
     app.run(debug=True)
