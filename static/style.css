@@ -8,20 +8,23 @@
 
 body{
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
+    padding-top: 6em;
 }
 
 header{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: absolute;
+    position: fixed;
+    z-index: 1000;
     top: 0;
     width: 100vw;
-    height: 15%;
+    height: 6em;
 }
 header div{
     padding: 0 1em;

@@ -2,26 +2,15 @@ from flask import *
 from flask_session import Session
 from werkzeug.security import generate_password_hash, check_password_hash
 
+from database.produtos import LISTA_PRODUTOS, carrinho, usuarios
+
 app = Flask(__name__)
 
-app.secret_key = 's69LFQk4eGAeHXRk7QfPRc6fspnJMCH7muRhL^PGcuu@82k&oNgH6Cj9wKYZpGBMZGc!Wo9ZoMUTY#ZKqAUY%YDX@GXnqdix59DM7ZCSbXiydj$4ezA4s75UmgFz2beMd9J!DoZvMsA4zqx6rQV96#HkeyEaF$8u#VuTx8MStrG@jVkuKaSHAdF$C2ybd^LGM34WGja2njvDBg4vTAaybnbMU8Gwu@fKn7Nt&%uP%GCrgU$M$brwB5NR72hc&@YzZNd3ekww6W&yn7QUp%KD3QtsLf6qbmcUz^C23ZqnifKmb!8oF5GRNhA7n5d2D!NVaSWo#XMMDcKMuF3fz@N#gUyENcYfmut67QwKdxrKTX5QK8YtoeiepEYnBX&X$mWqEibaMS%DTGGphDBxXuCbQG^fGNN3Prtpj9q$Adr5uMzu#tzNpLuJM2h%aEMyniehsQ8!tzdAgA&6TSRPYkaE3Da!mS3APicap3p%xKjL5tHPXD&QdBi8Et7mNu8p#ik'
+app.secret_key = 's69LFQk4eGAeHXRk7QfPRc6fspnJMCH7muRhL^PGcuu@82k&oNgH6Cj9wKYZpGBMZGc!Wo9ZoMUTY#ZKqAUY%YDX@GXnqdix59DM7ZCSbXiydj$4ezA4s75UmgFz2beMd9J!DoZvMsA4zqx6rQV96#HkeyEaF$8u#VuTx8MStrG@jVkuKaSHAdF$C2ybd^LGM34WGja2njvDBg4vTAaybnbMU8Gwu@fKn7Nt&%uP%GCrgU$M$brwB5NR72hc&@YzZNd3ekww6W&yn7QUp%KD3QtsLf6qbmcUz^C23ZqnifKmb!8oF5GRNhA7n5d2D!NVaSWo#XMMDcKMuF3fz@N#gUyENcYfmut67QwKdxrKTX5QK8YtoeiepEYnBX&X$mWqEibaMS%DTGGphDBxXuCbQG^fGNN3Prtpj9q$Adr5uMzu#tzNpLuJM2haEMyniehsQ8!tzdAgA&6TSRPYkaE3Da!mS3APicap3pxKjL5tHPXD&QdBi8Et7mNu8p#ik'
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = 'filesystem'
 
-usrs = {'adm': ['admadm', 'adm']} #Usuários
-LISTA_PRODUTOS = [
-    ['Mouse', 30.00],
-    ['Teclado', 100.00],
-    ['Microfone', 500.00],
-    ['Headset', 400.00],
-    ['Mesa digitalizadora', 220.00],
-    ['Monitor', 550.00],
-    ['impressora', 300.00],
-    ['Caixa de som', 120.00],
-]
-carrinho = {'adm': [['Produto1', '5']]}
-
-Session(app)
+# Session(app)
 
 @app.route('/')
 def index():
@@ -31,13 +20,13 @@ def index():
 def cadastro():
     if request.method == 'POST':
         nome = request.form['login']
-        usr = request.form['email']
-        if usr in usrs.keys():
+        email = request.form['email']
+        if email in usuarios.keys():
             return redirect(url_for('cadastro'))
         else:
             senha = request.form['senha']
             senha = generate_password_hash(senha)
-            usrs[usr] = [senha, nome]
+            usuarios[email] = [senha, nome]
             return redirect(url_for('login'))
     else:
         return render_template('cadastro.html')
@@ -47,9 +36,9 @@ def login():
     if request.method == 'POST':
         email = request.form['email']
         senha = request.form['senha']
-        if email in usrs:
-            if check_password_hash(usrs[email][0], senha):
-                session['name'] = usrs[email][1]
+        if email in usuarios:
+            if check_password_hash(usuarios[email][0], senha):
+                session['name'] = usuarios[email][1]
                 return redirect(url_for('produtos'))
             else:
                 return redirect(url_for('login'))
