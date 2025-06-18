@@ -1,4 +1,4 @@
-LISTA_PRODUTOS = [
+produtos = [
     ['Mouse', 30.00],
     ['Teclado', 100.00],
     ['Microfone', 500.00],

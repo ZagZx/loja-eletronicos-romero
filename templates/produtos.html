@@ -28,7 +28,7 @@
 
 {% block main %}
 {# AQUI VOCÊ VAI COLOCAR TODO O CONTEUDO DA PÁGINA, IMAGINE QUE ISSO É UMA TAG MAIN #}
-<form action="{{url_for('carrinho')}}" method="POST">
+<form action="{{url_for('rota_carrinho')}}" method="POST">
     <div class="card">
         <ul class="list-group list-group-flush">
             {% for produto in produtos %}   
