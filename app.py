@@ -1,5 +1,4 @@
 from flask import *
-from flask_session import Session
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from database import produtos, carrinho, usuarios
@@ -7,16 +6,15 @@ from database import produtos, carrinho, usuarios
 app = Flask(__name__)
 
 app.secret_key = 'bfb07264b99b8cd48a50720720dc0666adabc601ec82f5a557317e480ed080d2'
-app.config["SESSION_PERMANENT"] = False
-app.config["SESSION_TYPE"] = 'filesystem'
-
-Session(app)
 
 @app.route('/')
 def index():
+    # v SE QUISER QUE A SESSÃO FIQUE DEPOIS DE FECHAR O NAVEGADOR v
+    # session.permanent = True
+
     return render_template('index.html')
 
-@app.route("/cadastro", methods=['POST', 'GET'])
+@app.route("/cadastro", methods=['GET', 'POST'])
 def cadastro():
     if request.method == 'POST':
         nome = request.form['login']
@@ -31,7 +29,7 @@ def cadastro():
     else:
         return render_template('cadastro.html')
 
-@app.route("/login", methods=['POST', 'GET'])
+@app.route("/login", methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         email = request.form['email']
