@@ -6,11 +6,14 @@ Projeto da matéria de Programação de Sistemas para Internet, consiste em uma 
 - Python **OU** Docker
 
 ## Tecnologias Utilizadas
-- Python
-- HTML, CSS, JavaScript
-- Framework Flask
-- MySQL (Em Breve)
-- Docker (opcional)
+- [Python](https://docs.python.org/3/reference/index.html)
+- [HTML](https://developer.mozilla.org/docs/Web/HTML)
+- [CSS](https://developer.mozilla.org/docs/Web/CSS)
+- [Bootstrap](https://getbootstrap.com/docs/5.3)
+- [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
+- [Flask](https://flask.palletsprojects.com)
+- [MySQL](https://dev.mysql.com/doc/refman/8.4/en/) (Em Breve)
+- [Docker](https://docs.docker.com/) (opcional)
 
 ## Rodando com Python
 <details>
