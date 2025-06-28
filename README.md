@@ -1,20 +1,29 @@
 # Loja de Eletrônicos
 
-Projeto da matéria de Programação de Sistemas para Internet, consiste em uma loja online com a possibilidade de adicionar itens a um carrinho, o projeto deve utilizar Flask, deve ter cookies e session. 
+Projeto da matéria de Programação de Sistemas para Internet, consiste em uma loja online com a possibilidade de adicionar itens a um carrinho.
 
 ## Requisitos
 - Python **OU** Docker
 
+## Tecnologias Utilizadas
+- Python
+- HTML, CSS, JavaScript
+- Framework Flask
+- MySQL (Em Breve)
+- Docker (opcional)
+
 ## Rodando com Python
 <details>
   <summary>Windows</summary>
+
+  **IMPORTANTE:** Utilize o CMD/Prompt de Comando, no PowerShell não irá funcionar
 
   1. Crie o ambiente virtual:
      ```bash
      python -m venv env
      ```
 
-  2. Utilizando o CMD (no PowerShell não irá funcionar), ative o ambiente virtual:
+  2. Ative o ambiente virtual:
      ```bash
      .\env\Scripts\activate
      ```
@@ -57,38 +66,65 @@ Projeto da matéria de Programação de Sistemas para Internet, consiste em uma 
      ```bash
      flask run --host 0.0.0.0
      ```
-
 </details>
 
 ## Rodando com Docker
-### Construindo a imagem
-Na pasta raiz do repositório utilize o seguinte comando:
-``` bash
-docker build -t flask-app ./flask
-```
+<details>
+  <summary>Iniciando o servidor</summary>
 
-### Rodando a imagem
-Se quiser exibir o terminal:
-``` bash
-docker run -p 5000:5000 flask-app
-```
-**OU** se preferir o terminal oculto:
-``` bash
-docker run -dp 5000:5000 flask-app
-```
+  ### Construindo a imagem
+  Na pasta raiz do repositório utilize o seguinte comando:
+  ``` bash
+  docker build -t flask-app ./flask
+  ```
+  
+  ### Rodando a imagem
+  Se quiser exibir o terminal:
+  ``` bash
+  docker run -p 5000:5000 flask-app
+  ```
+  **OU** se preferir o terminal oculto:
+  ``` bash
+  docker run -dp 5000:5000 flask-app
+  ```
+
+</details>
+
+<details>
+  <summary>Finalizando o servidor</summary>
+  
+  1. Obtenha o ID do container, procure pela imagem flask-app e copie seu CONTAINER ID:
+     ```bash
+     docker ps
+     ```
+
+  2. Pare o container:
+     ```bash
+     docker stop (CONTAINER ID aqui)
+     ```
+
+
+</details>
+
 ## Servidor está rodando, e agora?
 É possível acessar a aplicação de duas formas, com localhost ou com o ip da sua máquina. **Pessoas na mesma rede que você podem acessar a aplicação através do IP da sua máquina.**
 
-#### localhost: 
-Para acessar com localhost basta digitar um dos endereços abaixo .
-- localhost:5000
-- 127.0.0.1:5000
+- localhost: 
+    Para acessar com localhost basta digitar um dos endereços abaixo .
+    - localhost:5000
+    - 127.0.0.1:5000
 
-#### ip:
-1. Descubra o ip ***da sua máquina*** através do comando a seguir.
-    - Windows: ipconfig  
-    - Linux: ip address
-
-2. Agora com o ip da máquina em mãos, basta digitar o ip da máquina seguido de dois pontos e a porta, que no caso é 5000.
-    - ip-da-maquina:5000
+- ip:
+    1. Descubra o ip ***da sua máquina***
+        - Windows 
+            ```bash 
+            ipconfig
+            ```
+             
+        - Linux: 
+            ```bash
+            ip addr
+            ```
+    2. Agora com o ip da máquina em mãos, basta digitar o ip da máquina seguido de dois pontos e a porta, que no caso é 5000.
+        - ip-da-maquina:5000
 
