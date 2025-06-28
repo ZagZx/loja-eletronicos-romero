@@ -82,14 +82,21 @@ Projeto da matéria de Programação de Sistemas para Internet, consiste em uma 
   ```
   
   ### Rodando a imagem
-  Se quiser exibir o terminal:
+
+  #### Logs visíveis
   ``` bash
   docker run -p 5000:5000 flask-app
   ```
-  **OU** se preferir o terminal oculto:
+  
+  O terminal exibirá os logs do servidor em tempo real.
+  
+  ---
+  
+  #### Logs ocultos
   ``` bash
   docker run -dp 5000:5000 flask-app
   ```
+  O container rodará em segundo plano. Use `docker logs <container_id>` para ver os logs.
 
 </details>
 
@@ -103,7 +110,7 @@ Projeto da matéria de Programação de Sistemas para Internet, consiste em uma 
 
   2. Pare o container:
      ```bash
-     docker stop (CONTAINER ID aqui)
+     docker stop <container-id>
      ```
 
 
