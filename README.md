@@ -4,6 +4,7 @@ Projeto da matéria de Programação de Sistemas para Internet, consiste em uma 
 
 ## Docker
 ### Construindo a imagem
+Na pasta raiz do repositório utilize o seguinte comando:
 ``` bash
 docker build -t flask-app ./flask
 ```
@@ -13,7 +14,7 @@ Se quiser exibir o terminal:
 ``` bash
 docker run -p 5000:5000 flask-app
 ```
-Se quiser o terminal oculto:
+**OU** se preferir o terminal oculto:
 ``` bash
 docker run -dp 5000:5000 flask-app
 ```
