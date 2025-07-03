@@ -1,11 +1,15 @@
 from flask import *
 from werkzeug.security import generate_password_hash, check_password_hash
+from secrets import token_hex
 
 from database import products, wallet, users
 
 app = Flask(__name__)
 
-app.secret_key = 'bfb07264b99b8cd48a50720720dc0666adabc601ec82f5a557317e480ed080d2'
+app.secret_key = token_hex() # gera uma nova key toda vez que reiniciar o servidor
+
+print(app.secret_key)
+# 'bfb07264b99b8cd48a50720720dc0666adabc601ec82f5a557317e480ed080d2'
 
 @app.route('/')
 def index():
