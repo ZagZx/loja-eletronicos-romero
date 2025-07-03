@@ -1,7 +1,7 @@
 from flask import *
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from database import produtos, carrinho, usuarios
+from database import products, wallet, users
 
 app = Flask(__name__)
 
@@ -17,14 +17,16 @@ def index():
 @app.route("/cadastro", methods=['GET', 'POST'])
 def cadastro():
     if request.method == 'POST':
-        nome = request.form['login']
+        username = request.form['login']
         email = request.form['email']
-        if email in usuarios.keys():
-            return redirect(url_for('cadastro'))
-        else:
-            senha = request.form['senha']
-            senha = generate_password_hash(senha)
-            usuarios[email] = [senha, nome]
+        password = request.form['senha']
+        password = generate_password_hash(password)
+        if email not in users.keys():
+        #     return redirect(url_for('cadastro'))
+        # else:
+            
+            users[email] = {'username':username, 'password': password}
+            print(users)
             return redirect(url_for('login'))
     else:
         return render_template('cadastro.html')
@@ -33,11 +35,16 @@ def cadastro():
 def login():
     if request.method == 'POST':
         email = request.form['email']
-        senha = request.form['senha']
-        if email in usuarios:
-            if check_password_hash(usuarios[email][0], senha):
+        password = request.form['senha']
+        if email in users:
+            if check_password_hash(users[email]['password'], password):
+                print('Logou')
+                session['user'] = email
+                session['password'] = generate_password_hash(password)
+                print(session)
                 return redirect(url_for('rota_produtos'))
             else:
+                print('Senha errada')
                 return redirect(url_for('login'))
         else: 
             return redirect(url_for('cadastro'))
@@ -49,14 +56,14 @@ def logout():
  
 @app.route("/produtos", methods=['POST','GET'])
 def rota_produtos():
-    return render_template('produtos.html', produtos=produtos)
+    return render_template('produtos.html', produtos=products)
 
 @app.route("/carrinho", methods=['POST','GET'])
 def rota_carrinho():
 
     if request.method == 'POST':
         pass #eventualmente o request
-    return render_template('carrinho.html', carrinho=carrinho)
+    return render_template('carrinho.html', carrinho=wallet)
 
 if __name__ == '__main__':
     app.run(debug=True)

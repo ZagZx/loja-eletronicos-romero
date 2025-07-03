@@ -12,7 +12,7 @@
 <body>
     <header class="bg-dark-subtle">
         <div>
-            <p class="h1" style="user-select: none;">{% block header_title%}{% endblock %}</p>
+            <a href="{{ url_for('index') }}"><p class="h1" style="user-select: none;">{% block header_title%}{% endblock %}</p></a>
             <div>
                 <a class="btn btn-outline-light" href="{{ url_for('rota_produtos') }}">Produtos</a>
                 <a class="btn btn-outline-light" href="{{ url_for('rota_carrinho') }}">Carrinho</a>
