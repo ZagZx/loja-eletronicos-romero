@@ -1,14 +1,25 @@
-from flask import Flask, render_template, request, redirect, url_for, session
-from flask_login import LoginManager
+from flask import Flask, render_template, request, redirect, url_for, session, flash
+from flask_login import LoginManager, login_user, login_required
+
 from werkzeug.security import generate_password_hash, check_password_hash
 from secrets import token_hex
 
 from database import products, wallet, users
+from models import User
 
 app = Flask(__name__)
 app.secret_key = token_hex() # gera uma nova key toda vez que reiniciar o servidor
 
 login_manager = LoginManager(app)
+login_manager.login_view = 'login'
+
+@login_manager.user_loader
+def load_user(user_id):
+    if user_id in users:
+        user_data = users[id]
+        return User(user_id, user_data)
+    else:
+        return None
 
 @app.route('/')
 def index():
@@ -22,14 +33,13 @@ def cadastro():
     if request.method == 'POST':
         username = request.form['login']
         email = request.form['email']
-        password = request.form['senha']
-        password = generate_password_hash(password)
+        password_hash = generate_password_hash(request.form['senha'])
         if email not in users.keys():
         #     return redirect(url_for('cadastro'))
         # else:
-            
-            users[email] = {'username':username, 'password': password}
-            print(users)
+            id = len(users) + 1 # auto increment
+            users[id] = {'username':username, 'email':email, 'password_hash':password_hash} # adiciona ao banco de dados
+            # print(users)
             return redirect(url_for('login'))
     else:
         return render_template('cadastro.html')
@@ -39,31 +49,36 @@ def login():
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['senha']
-        if email in users:
-            if check_password_hash(users[email]['password'], password):
-                print('Logou')
-                session['user'] = email
-                session['password'] = generate_password_hash(password)
-                print(session)
-                return redirect(url_for('rota_produtos'))
-            else:
-                print('Senha errada')
-                return redirect(url_for('login'))
-        else: 
-            return redirect(url_for('cadastro'))
-    return render_template('login.html')
+
+        for id, data in users.items(): # INEFICIENTE, QUANDO INTEGRAR COM BANCO DE DADOS HAVERÁ A CONSULTA COM WHERE
+            # NÃO SE USA FLASK LOGIN E SESSION AO MESMO TEMPO EM AUTENTICAÇÃO
+            print(id)
+            print(data)
+            if data['email'] == email:
+                if check_password_hash(users[id]['password_hash'], password):
+                    login_user(User(id, data))
+                    return redirect(url_for('rota_produtos'))
+                else:
+                    # flash('Senha incorreta', category='error')
+                    return redirect(url_for('login'))
+        # usuário não cadastrado
+        return redirect(url_for('cadastro')) 
+    if request.method == 'GET': # não precisava desse IF, porém deixa mais legível
+        return render_template('login.html')
 
 @app.route("/logout")
 def logout():
+
     return redirect(url_for('index'))
- 
+
 @app.route("/produtos", methods=['POST','GET'])
+@login_required
 def rota_produtos():
     return render_template('produtos.html', produtos=products)
 
 @app.route("/carrinho", methods=['POST','GET'])
+@login_required
 def rota_carrinho():
-
     if request.method == 'POST':
         pass #eventualmente o request
     return render_template('carrinho.html', carrinho=wallet)
