@@ -26,6 +26,23 @@
             <input class="form-control bg-dark-subtle" type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
             
             <button class="btn btn-info" style="margin-top: 0.7em;" type="submit">Entrar</button>
+            {#
+
+            lista de mensagens com a estrutura:
+            [('categoria', 'mensagem'), ('error', 'Erro ao enviar formulário')]
+            
+            #}
+            {% with messages = get_flashed_messages(with_categories=true) %} 
+                <ul>
+                {% for category, message in messages %}
+                    
+                        <li class="{{ category }}">    
+                            {{ message }}
+                        </li>
+                {% endfor %}
+                </ul>
+                    
+            {% endwith %}
         </form>
     </div>
 </div>
