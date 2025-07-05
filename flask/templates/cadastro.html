@@ -4,17 +4,6 @@
 {% block head %}
     {{ super() }}
     
-    <script>
-        function mostrar(){
-            const input = document.getElementById('senha')
-            if ( input.type === 'password'){
-                input.type = 'text'
-            }
-            else{
-                input.type = 'password'
-            }
-        }
-    </script>
 {% endblock head %}
 
 {% block header_title %}Cadastro{% endblock header_title %}
@@ -32,18 +21,16 @@
 
                 <label class="form-label" for="senha">Senha</label>
                 <input class="form-control bg-dark-subtle" type="password" id="senha" name="senha" placeholder="Digite uma senha" required>
+                {% include "components/show_password.html" %}
                 <span style="font-size: 0.78em">
                     <label class="form-label" style="color: rgba(230, 30, 30, 0.53);" for="senha">
                         * A senha deve ter ao menos 5 caracteres
                     </label>
-                    <input class="form-check-input" onclick="mostrar()" id="mostrar_senha" type="checkbox" value="teste">
-                    <label class="form-label" class="form-check-label" for="mostrar_senha">Mostrar senha</label>
                 </span>
+                
                 <button class="btn btn-warning" type="submit">Cadastrar</button>
             </form>
         </div>
-        
     </div>
-    
 {% endblock main %}
     

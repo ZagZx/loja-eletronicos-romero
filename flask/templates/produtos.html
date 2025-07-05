@@ -28,14 +28,14 @@
 
 {% block main %}
 {# AQUI VOCÊ VAI COLOCAR TODO O CONTEUDO DA PÁGINA, IMAGINE QUE ISSO É UMA TAG MAIN #}
-<form action="{{url_for('rota_carrinho')}}" method="POST">
+<form action="{{url_for('carrinho')}}" method="POST">
     <div class="card">
         <ul class="list-group list-group-flush">
-            {% for produto in produtos %}   
+            {% for product in products %}   
             <li class="list-group-item">
-                <label class="form-check-label" for="{{ produto }}">{{ produto }} - R$ {{ produtos[produto] }}</label>
-                <input class="form-check-input" type="checkbox" id="{{ produto}}" placeholder="Selecionar" name="{{ produto }}">
-                <input class="form-control" min="1" value="1" type="number" oninput="only_number(`{{ produto + 'qnt' }}`)" id="{{ produto + 'qnt'}}" name="{{ produto + 'qnt' }}" placeholder="Quantidade">  
+                <label class="form-check-label" for="{{ product }}">{{ product }} - R$ {{ produtos[product] }}</label>
+                <input class="form-check-input" type="checkbox" id="{{ product }}" placeholder="Selecionar" name="{{ product }}">
+                <input class="form-control" min="1" value="1" type="number" oninput="only_number(`{{ product + 'qnt' }}`)" id="{{ product + 'qnt' }}" name="{{ product + 'qnt' }}" placeholder="Quantidade">  
             </li>
             {% endfor %}
         </ul>

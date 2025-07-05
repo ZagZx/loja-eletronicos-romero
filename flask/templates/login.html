@@ -24,6 +24,8 @@
 
             <label class="form-label" for="senha">Senha</label>
             <input class="form-control bg-dark-subtle" type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
+
+            {% include "components/show_password.html" %}
             
             <button class="btn btn-info" style="margin-top: 0.7em;" type="submit">Entrar</button>
             {#
@@ -35,13 +37,11 @@
             {% with messages = get_flashed_messages(with_categories=true) %} 
                 <ul>
                 {% for category, message in messages %}
-                    
-                        <li class="{{ category }}">    
-                            {{ message }}
-                        </li>
+                    <li class="{{ category }}">    
+                        {{ message }}
+                    </li>
                 {% endfor %}
                 </ul>
-                    
             {% endwith %}
         </form>
     </div>

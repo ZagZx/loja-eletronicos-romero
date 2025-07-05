@@ -76,16 +76,16 @@ def logout():
 
 @app.route("/produtos", methods=['POST','GET'])
 @login_required
-def rota_produtos():
-    return render_template('produtos.html', produtos=products)
+def produtos():
+    return render_template('produtos.html', products=products)
 
 @app.route("/carrinho", methods=['POST','GET'])
 @login_required
-def rota_carrinho():
+def carrinho():
     if request.method == 'POST':
         pass # eventualmente o request
     cart = {}
-    return render_template('carrinho.html', carrinho=cart)
+    return render_template('carrinho.html', cart=cart)
 
 if __name__ == '__main__':
     app.run(debug=True)
