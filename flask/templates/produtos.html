@@ -33,7 +33,7 @@
         <ul class="list-group list-group-flush">
             {% for product in products %}   
             <li class="list-group-item">
-                <label class="form-check-label" for="{{ product }}">{{ product }} - R$ {{ produtos[product] }}</label>
+                <label class="form-check-label" for="{{ product }}">{{ product }} - R$ {{ products[product] }}</label>
                 <input class="form-check-input" type="checkbox" id="{{ product }}" placeholder="Selecionar" name="{{ product }}">
                 <input class="form-control" min="1" value="1" type="number" oninput="only_number(`{{ product + 'qnt' }}`)" id="{{ product + 'qnt' }}" name="{{ product + 'qnt' }}" placeholder="Quantidade">  
             </li>
