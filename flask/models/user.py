@@ -5,5 +5,5 @@ class User(UserMixin):
         self.id = id
         self.username:str = data['username']
         self.password_hash:str = data['password_hash']
-
+    
         

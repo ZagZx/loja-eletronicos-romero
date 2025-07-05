@@ -1,10 +1,10 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
-from flask_login import LoginManager, login_user, login_required, current_user
+from flask_login import LoginManager, login_user, login_required, current_user, logout_user
 
 from werkzeug.security import generate_password_hash, check_password_hash
 from secrets import token_hex
 
-from database import products, wallet, users
+from database import products, users, dump_database
 from models import User
 
 app = Flask(__name__)
@@ -39,6 +39,7 @@ def cadastro():
         # else:
             id = str(len(users) + 1) # auto increment
             users[id] = {'username':username, 'email':email, 'password_hash':password_hash} # adiciona ao banco de dados
+            dump_database('user')
             # print(users)
             return redirect(url_for('login'))
     else:
@@ -60,7 +61,7 @@ def login():
                     login_user(User(id, data))
                     print(current_user.is_authenticated)
                     
-                    return redirect(url_for('rota_produtos'))
+                    return redirect(url_for('index'))
                 else:
                     flash('Senha incorreta', category='error')
                     return redirect(url_for('login'))
@@ -71,6 +72,7 @@ def login():
 
 @app.route("/logout")
 def logout():
+    logout_user()
 
     return redirect(url_for('index'))
 
@@ -84,7 +86,8 @@ def rota_produtos():
 def rota_carrinho():
     if request.method == 'POST':
         pass #eventualmente o request
-    return render_template('carrinho.html', carrinho=wallet)
+    cart = {}
+    return render_template('carrinho.html', carrinho=cart)
 
 if __name__ == '__main__':
     app.run(debug=True)
