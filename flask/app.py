@@ -2,13 +2,23 @@ from flask import Flask, render_template, request, redirect, url_for, session, f
 from flask_login import LoginManager, login_user, login_required, current_user, logout_user
 
 from werkzeug.security import generate_password_hash, check_password_hash
-from secrets import token_hex
+from dotenv import load_dotenv
+import os
+
 
 from database import products, users, dump_database
 from models import User
 
+if not os.path.exists('./.env'):
+    from secrets import token_hex
+
+    with open('./.env', 'w') as fw:
+        fw.write(f'SECRET_KEY = "{token_hex()}" ') 
+
+load_dotenv()
+
 app = Flask(__name__)
-app.secret_key = token_hex() # gera uma nova key toda vez que reiniciar o servidor
+app.secret_key = os.getenv('SECRET_KEY') # gera uma nova key toda vez que reiniciar o servidor
 
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
