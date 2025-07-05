@@ -10,14 +10,14 @@ from models import User
 
 if not os.path.exists('./.env'):
     from secrets import token_hex
-
+    secret_key = token_hex()
     with open('./.env', 'w') as fw:
-        fw.write(f'SECRET_KEY = "{token_hex()}" ') 
+        fw.write(f'SECRET_KEY = "{secret_key}"')
 
 load_dotenv()
 
 app = Flask(__name__)
-app.secret_key = os.getenv('SECRET_KEY') # gera uma nova key toda vez que reiniciar o servidor
+app.secret_key = os.getenv('SECRET_KEY')
 
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
