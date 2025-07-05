@@ -35,8 +35,6 @@ def cadastro():
         email = request.form['email']
         password_hash = generate_password_hash(request.form['senha'])
         if email not in users.keys():
-        #     return redirect(url_for('cadastro'))
-        # else:
             id = str(len(users) + 1) # auto increment
             users[id] = {'username':username, 'email':email, 'password_hash':password_hash} # adiciona ao banco de dados
             dump_database('user')
@@ -59,7 +57,7 @@ def login():
             if data['email'] == email:
                 if check_password_hash(users[id]['password_hash'], password):
                     login_user(User(id, data))
-                    print(current_user.is_authenticated)
+                    # print(current_user.is_authenticated)
                     
                     return redirect(url_for('index'))
                 else:
@@ -85,10 +83,9 @@ def rota_produtos():
 @login_required
 def rota_carrinho():
     if request.method == 'POST':
-        pass #eventualmente o request
+        pass # eventualmente o request
     cart = {}
     return render_template('carrinho.html', carrinho=cart)
 
 if __name__ == '__main__':
     app.run(debug=True)
-
